@@ -1,0 +1,42 @@
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Archivos de logs
+*.log
+npm-debug.log*
+
+# Dependencias de Node.js
+node_modules/
+
+# Entornos virtuales de Python
+venv/
+env/
+
+# Archivos temporales
+*.tmp
+*.temp
+
+# Directorios de IDEs/editores
+.vscode/
+.idea/
+
+# Archivos de configuración específicos del entorno
+*.env
+
+# Salida de compilaciones
+dist/
+build/
+
+# Archivos de bases de datos
+*.sqlite3
+
+# Archivos de sistemas como macOS
+.AppleDouble
+.LSOverride
+
+# Otros
+*.bak
+*.swp
+
+package-lock.json
