@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tavogus007/store-server.git"
+    "url": "git+git https://github.com/Dev-Code-Academy-bo/store-backend.git"
   },
   "author": "Gustavo G",
   "license": "MIT",
