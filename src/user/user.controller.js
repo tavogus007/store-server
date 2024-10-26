@@ -1,13 +1,22 @@
 'use strict';
+const userModel = require('./user.model');
 
-const userdb = require('./userdb');
 
-function save(){
-
+async function save(req, res){
+    const newUser = req.body;
+    const UserSaved = await userModel.save(newUser);
+    return res.status(200).json(UserSaved);
 }
-function get(req,res){
-    return res.status(200).json(userdb);
+async function get(req,res){
+    const user = await userModel.getAll()
+    return res.status(200).json(user);
 }
+
+async function getById(req,res){
+    const userFound = await userModel.getById(req.params.id);
+    return res.status(200).json(userFound);
+}
+
 function update(){
 
 }
@@ -16,5 +25,9 @@ function remove(){
 }
 
 module.exports = {
-    save,get,update,remove
+    save,
+    get,
+    getById,
+    update,
+    remove
 }

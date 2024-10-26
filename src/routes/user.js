@@ -1,10 +1,13 @@
 'use strict';
 
 const express = require('express');
-const router = express.Router();
 const userController = require('../user/user.controller');
 
-router.get('/', userController.get);
+const router = express.Router();
+router
+    .post('/',userController.save)
+    .get('/', userController.get)
+    .get('/:id',userController.getById);
 
 
 module.exports = router;
