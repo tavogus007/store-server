@@ -14,9 +14,18 @@ function getAll (){
 function getById(id){
     return db.getById(id);
 }
+function put(id,data){
+    return db.put(id,data);
+}
+
+function remove(id){
+    return db.remove(id);
+}
 
 module.exports = {
     save,
     getAll,
-    getById
+    getById,
+    put,
+    remove
 }
