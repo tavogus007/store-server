@@ -5,6 +5,9 @@ const bodyParser = require('body-parser');
 const dbmongoo = require('./src/config/mongodb');
 const path = require('path');
 
+const sequelize = require('./src/config/mysqldb');
+sequelize.sync();
+
 dbmongoo.connect();
 
 const port = process.env.PORT || 3000;

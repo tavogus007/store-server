@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
+require('dotenv').config();
 
-const db = 'store-backend';
-const ref = 'mongodb://localhost:27017/';
+const db = process.env.DB_NAME;
+const ref = 'mongodb://localhost:28017/';
 
 async function connect() {
     await
