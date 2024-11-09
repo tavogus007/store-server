@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 
 const db = process.env.DB_NAME;
-const ref = 'mongodb://localhost:28017/';
+const ref = 'mongodb://localhost:27017/';
 
 async function connect() {
     await

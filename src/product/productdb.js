@@ -1,30 +1,37 @@
 'use strict';
-
-const mongoose = require('mongoose');
-const schema = require('./user.schema');
-const document  = 'user';
-
-let user = mongoose.model(document,schema.userSchema);
-
+const product = require('./product.schema');
 async function save(data){
-    return await user.create(data);
+    return await product.create(data);
 }
 
 async function get(){
-    return await user.find();
+    return await product.findAll();
 }
 
 async function getById(id){
-    return await user.findById(id);
+    return await product.findByPk(id);
 }
 
 async function put(id, data){
-    const response = await user.replaceOne({_id: id}, data);
-    return getById(id);
+    const [updated] = await product.update(data, {
+        where : {id}
+    });
+    if (updated){
+        return await getById(id);
+    }
+    return false;
+    //const response = await user.replaceOne({_id: id}, data);
+    //return getById(id);
 }
 
 async function remove(id){
-    return await user.findOneAndDelete({_id: id});
+    const deleted = await product.destroy({
+        where : {id}
+    });
+    if (deleted){
+        return true;
+    }
+    return false;
 }
 
 module.exports = {

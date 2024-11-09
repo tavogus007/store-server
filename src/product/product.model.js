@@ -1,6 +1,6 @@
 'use strict';
 
-const db = require('./userdb');
+const db = require('./productdb');
 
 
 function save (user){

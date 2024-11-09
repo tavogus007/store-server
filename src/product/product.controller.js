@@ -1,30 +1,33 @@
 'use strict';
-const userModel = require('./user.model');
+const Product = require('./product.schema');
+const model = require('./product.model');
 
 
 async function save(req, res){
-    req.body.photo = await `photos/${req.file.filename}`
-    const UserSaved = await userModel.save(req.body);
-    return res.status(200).json(UserSaved);
+    req.body.image = await `photos/${req.file.filename}`
+    const productSaved = await model.save(req.body);
+    return res.status(200).json(productSaved);
 }
+
+//MIN 20
 async function get(req,res){
-    const user = await userModel.getAll()
-    return res.status(200).json(user);
+    const product = await model.getAll();
+    return res.status(200).json(product);
 }
 
 async function getById(req,res){
-    const userFound = await userModel.getById(req.params.id);
-    return res.status(200).json(userFound);
+    const productFound = await model.getById(req.params.id);
+    return res.status(200).json(productFound);
 }
 
 async function update(req, res){
-    const user = await userModel.put(req.params.id, req.body);
-    return res.status(200).json(user);
+    const product = await model.put(req.params.id, req.body);
+    return res.status(200).json(product);
 }
 
 async function remove(req, res){
-    const user = await userModel.remove(req.params.id);
-    return res.status(200).json(user);
+    const product = await model.remove(req.params.id);
+    return res.status(200).json(model);
 }
 
 module.exports = {

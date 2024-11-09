@@ -1,6 +1,6 @@
 'use strict';
 
-const {DataTypes} = require('seuelize');
+const {DataTypes} = require('sequelize');
 const sequelize = require("../config/mysqldb");
 
 const Product = sequelize.define('Product', {
@@ -8,10 +8,7 @@ const Product = sequelize.define('Product', {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    lastname: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
+
     details: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -20,10 +17,15 @@ const Product = sequelize.define('Product', {
         type: DataTypes.STRING,
         allowNull: false,
     },
+    category: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
     price: {
         type: DataTypes.FLOAT,
         allowNull: false,
     },
+
     salePrice: {
         type: DataTypes.FLOAT,
         allowNull: false,
