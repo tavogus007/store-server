@@ -1,10 +1,17 @@
 'use strict';
 
 const express = require('express');
+
+const saleController = require('../sale/sale.controller');
+
 const router = express.Router();
 
-router.get('/', function (req, res) {
-    res.send('Hello saler')
-});
+router
+    .post('/', saleController.save)
+    .get('/', saleController.get)
+    .get('/:id',saleController.getById)
+    .put('/:id', saleController.update)
+    .delete('/:id', saleController.remove);
+
 
 module.exports = router;
