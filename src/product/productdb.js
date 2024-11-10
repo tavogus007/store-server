@@ -1,43 +1,90 @@
-'use strict';
-const product = require('./product.schema');
-async function save(data){
-    return await product.create(data);
+'user strict';
+
+const Product =  require('./product.schema');
+const errorBuilder = require('../commons/error-builder');
+
+const MYSQL = 'MySQL';
+
+async function save (data) {
+  try {
+    return await Product.create(data);
+  } catch (error) {
+    throw errorBuilder.build(MYSQL, error);
+  }
 }
 
-async function get(){
-    return await product.findAll();
+async function get () {
+  try{
+    return await Product.findAll();
+  } catch (error){
+    throw errorBuilder.build(MYSQL, error);
+  }
 }
 
-async function getById(id){
-    return await product.findByPk(id);
-}
-
-async function put(id, data){
-    const [updated] = await product.update(data, {
-        where : {id}
-    });
-    if (updated){
-        return await getById(id);
+async function getById(id) {
+  try{
+    const res = await Product.findByPk(id);
+    if(res) {
+      return res;
     }
-    return false;
-    //const response = await user.replaceOne({_id: id}, data);
-    //return getById(id);
+    throw errorBuilder.build(MYSQL, error);
+  } catch(error) {
+    throw errorBuilder.build('configure-status', 
+      { 
+        name: 'database - findById', 
+        message: 'not found product id', 
+        status: 404
+      });
+  }
 }
 
-async function remove(id){
-    const deleted = await product.destroy({
-        where : {id}
+async function put(id, data) {
+  try {
+    const [updated] = await Product.update( data, {
+      where: { id }
     });
-    if (deleted){
-        return true;
+    if (updated) {
+      return await getById(id);
     }
-    return false;
+    const err = errorBuilder.build('configure-status', 
+      {
+        name: 'database - update', 
+        message: 'not found product id', 
+        status: 404
+      });
+    throw err;
+  } catch (error) {
+    if (error.status === 404)
+      throw err;
+    throw errorBuilder.build(MYSQL, error);
+  }
 }
 
+async function remove(id) {
+  try {
+    const deleted =  await Product.destroy({
+      where : { id }
+    });
+    if (deleted) {
+      return true;
+    }
+    const err = errorBuilder.build('configure-status', 
+      {
+        name: 'database - delete', 
+        message: 'not found product id', 
+        status: 404
+      });
+    throw err;
+  } catch (error) {
+    if (error.status === 404)
+      throw err;
+    throw errorBuilder.build(MYSQL, error);
+  }
+}
 module.exports = {
-    save,
-    get,
-    getById,
-    put,
-    remove
+  save,
+  get,
+  getById,
+  put,
+  remove,
 }
