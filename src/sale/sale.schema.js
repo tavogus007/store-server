@@ -21,7 +21,7 @@ const sale = sequelize.define('Sale', {
     }
 });
 
-sale.belongsTo(product, {foreignKey: "userId"});
-sale.belongsTo(client, {foreignKey: "productId"});
+sale.belongsTo(product, {foreignKey: "productId"});
+sale.belongsTo(client, {foreignKey: "userId"});
 
 module.exports = sale;
