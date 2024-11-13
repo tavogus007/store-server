@@ -4,10 +4,10 @@ const client = require('./client');
 const product = require('./product');
 const sales = require('./sales');
 const login = require('./login');
-
+const middleware = require('../commons/middleware');
 
 function routes(app) {
-    app.use('/api/user',user);
+    app.use('/api/user', middleware.verifyToken, user);
     app.use('/api/client',client);
     app.use('/api/product',product);
     app.use('/api/sales',sales);
