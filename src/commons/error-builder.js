@@ -11,6 +11,14 @@ let build = (errorName, error) => {
         message: error[0].message
       };
       break;
+
+      case 'unauthorized':
+        status = 401;
+        body = {
+          name: error.name,
+          message: error.message
+        };
+
     case 'mongoose':
       status = 400;
       body = {
