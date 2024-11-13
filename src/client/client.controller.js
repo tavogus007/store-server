@@ -2,7 +2,6 @@
 
 const model = require('./client.model');
 
-
 async function save(req, res){
     
     const clientSaved = await model.save(req.body);

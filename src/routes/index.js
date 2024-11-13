@@ -3,12 +3,17 @@ const user = require('./user');
 const client = require('./client');
 const product = require('./product');
 const sales = require('./sales');
+const login = require('./login');
+
 
 function routes(app) {
     app.use('/api/user',user);
     app.use('/api/client',client);
     app.use('/api/product',product);
     app.use('/api/sales',sales);
+    app.use('/api/login',login);
+    
+
     /*
 
     app.get('/', function (req, res) {

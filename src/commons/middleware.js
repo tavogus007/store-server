@@ -1,6 +1,6 @@
 'use strict';
 
-const bcrypt = require('bdrypt');
+const bcrypt = require('bcrypt');
 const {SALT_ROUNDS} = require('../config/global');
 
 function encrypt (res, request, next){
